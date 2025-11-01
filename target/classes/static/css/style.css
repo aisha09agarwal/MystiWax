@@ -1,0 +1,184 @@
+/* --- Global Reset & Typography --- */
+body {
+    font-family: 'Inter', sans-serif;
+    color: #333;
+    background-color: #fff;
+    margin: 0;
+    line-height: 1.5;
+}
+
+h1, h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s;
+}
+
+/* --- Header / Navigation --- */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px 0; /* Generous horizontal padding */
+}
+
+.logo {
+    font-size: 1.6em;
+    font-weight: 500;
+    letter-spacing: 3px; /* Wider spacing for elegance */
+    text-transform: uppercase;
+}
+
+.header-left, .header-right {
+    display: flex;
+    gap: 30px;
+    font-size: 1.1em;
+}
+
+/* Secondary Nav */
+.secondary-nav {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0 20px;
+    gap: 40px; /* More space between links */
+    text-transform: uppercase;
+    font-size: 0.85em;
+    font-weight: 500;
+    border-bottom: 1px solid #eee; /* Light separator */
+}
+
+.secondary-nav a:hover {
+    color: #555;
+}
+
+/* --- Hero Section (Aesthetic Focus) --- */
+.hero-section {
+    position: relative;
+    height: 550px;
+    /* Simulate the aesthetic dark image with light text */
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+        url('/image/home_background.jpg') center/cover no-repeat;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Content near the bottom, like the image */
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
+    padding-bottom: 80px;
+}
+
+.hero-content h1 {
+    font-size: 3em;
+    margin-bottom: 30px;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    letter-spacing: 1px;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 12px 35px;
+    background-color: #CC6644; /* Muted terracotta/orange accent */
+    color: white;
+    font-weight: 500;
+    border: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #AA5533;
+}
+
+/* --- Product Selection Bar --- */
+.product-selection-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px 60px 30px;
+}
+
+.tabs {
+    font-size: 1.1em;
+    font-weight: 500;
+    display: flex;
+    gap: 30px;
+}
+
+.tab {
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.tab.active {
+    opacity: 1;
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+}
+
+.view-all-button {
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* --- Product Grid --- */
+.product-grid-section {
+    padding: 0 60px 80px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px; /* Ample white space */
+}
+
+.image-wrapper {
+    height: 450px; /* Tall, prominent image box */
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Ensure images stay within box */
+}
+
+.image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.pink-bg { background-color: #f9eef2; }
+.white-bg { background-color: #fcfcfc; }
+.sand-bg { background-color: #f0e6da; }
+
+.product-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1em;
+    margin: 10px 0 0;
+}
+
+.product-desc {
+    font-size: 0.9em;
+    color: #777;
+    margin: 0;
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 30px 0;
+    border-top: 1px solid #eee;
+    font-size: 0.8em;
+    color: #999;
+}

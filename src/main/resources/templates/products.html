@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MystiWax | All Products</title>
+    <!-- Add Google Fonts for high-quality typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Using Thymeleaf @{...} syntax for robust static resource linking -->
+    <link rel="stylesheet" th:href="@{/css/style.css}"> 
+    <style>
+        /* Ensuring the header and grid have proper spacing after removing the title area */
+        .product-grid-section {
+            padding-top: 1rem; /* Reduced top padding as the title is gone */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Top Bar / Navigation (High-End Minimalist) - KEPT -->
+    <header class="main-header">
+        <div class="header-left">
+            <!-- Icons for Search -->
+            <a href="#" class="icon-link">🔍</a> 
+        </div>
+        
+        <div class="logo"><a th:href="@{/}" style="text-decoration: none; color: inherit;">MystiWax</a></div>
+        
+        <div class="header-right">
+            <!-- Icons for User and Cart -->
+            <a href="#" class="icon-link">👤</a> 
+            <a href="#" class="icon-link">🛒</a> 
+        </div>
+    </header>
+    
+    <!-- 2. All Products Grid - KEPT -->
+    <section class="product-grid-section">
+        <div class="product-grid">
+            <!-- THYMELEAF LOOP: Iterates over the full list of products provided by the PageController -->
+            <div class="product-card" th:each="product : ${allProducts}">
+                
+                <!-- Image Wrapper and Image Endpoint -->
+                <div class="image-wrapper pink-bg">
+                    <!-- The image source calls the REST endpoint, passing the imageId -->
+                    <img th:src="@{/image/{id}(id=${product.imageId})}" 
+                         th:alt="${product.name}" 
+                         onerror="this.onerror=null; this.src='https://placehold.co/350x450/9CA3AF/FFFFFF?text=No+Image'" 
+                         loading="lazy" />
+                </div>
+                
+                <!-- Product Details -->
+                <p class="product-name" th:text="${product.name}">Placeholder Candle Name</p>
+                <p class="product-desc" th:text="${product.description}">Placeholder scent description</p>
+                <p class="product-price" th:text="'$' + ${#numbers.formatDecimal(product.price, 0, 'COMMA', 2, 'POINT')}">€49.99</p>
+                
+                <!-- Availability indicator using 'quantity' field -->
+                <p th:if="${product.quantity > 0}" class="stock-status in-stock">In Stock</p>
+                <p th:unless="${product.quantity > 0}" class="stock-status out-of-stock">Out of Stock</p>
+            </div>
+
+            <!-- Fallback if no products are found -->
+            <div th:if="${allProducts == null or #lists.isEmpty(allProducts)}" class="text-center w-full col-span-3 py-10">
+                <p class="text-gray-500">No products are available in the store yet.</p>
+            </div>
+            
+        </div>
+    </section>
+    
+    <!-- 3. Footer - KEPT -->
+    <footer>
+        <p>© 2025 MystiWax. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

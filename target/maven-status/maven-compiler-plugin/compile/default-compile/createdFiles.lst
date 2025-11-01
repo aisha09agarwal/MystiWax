@@ -1,0 +1,9 @@
+in\aishaagarwal\mystiwax\controller\PageController.class
+in\aishaagarwal\mystiwax\repository\ProductRepository.class
+in\aishaagarwal\mystiwax\service\ProductService.class
+in\aishaagarwal\mystiwax\controller\ProductRestController.class
+in\aishaagarwal\mystiwax\service\MystiWax.class
+in\aishaagarwal\mystiwax\model\Product.class
+in\aishaagarwal\mystiwax\service\MystiWaxImplementation.class
+in\aishaagarwal\mystiwax\config\GridFsConfig.class
+in\aishaagarwal\mystiwax\MystiwaxApplication.class

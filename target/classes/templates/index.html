@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MystiWax | Blissful Aesthetic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" th:href="@{/css/style.css}"> 
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-left">
+            <a href="#" class="icon-link">🔍</a> 
+        </div>
+        
+        <div class="logo">MystiWax</div>
+        
+        <div class="header-right">
+            <a href="#" class="icon-link">👤</a> 
+            <a href="#" class="icon-link">🛒</a> 
+        </div>
+    </header>
+
+    <nav class="secondary-nav">
+        <a href="/products">Shop</a>
+        <a href="#">Blog</a>
+        <a href="#">Story</a>
+        <a href="#">Insta</a>
+        <a href="#">Contact</a>
+    </nav>
+
+
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Ignite Your Senses with Every Candle</h1>
+            <a href="/products" class="cta-button">Explore Scents</a>
+        </div>
+    </section>
+    
+    <!-- 3. Product Tabs / View All -->
+    <section class="product-selection-bar">
+        <div class="tabs">
+            <!-- These would typically be wired up via JavaScript -->
+            <span class="tab active">New</span>
+            <span class="tab">Best sellers</span>
+        </div>
+        <!-- This button links to the separate /products page which will show ALL products -->
+        <a th:href="@{/products}" class="view-all-button">View all</a>
+    </section>
+
+    <!-- 4. Product Grid: DYNAMIC CONTENT LOOP -->
+    <section class="product-grid-section">
+        <div class="product-grid">
+            <!-- The THYMELEAF LOOP: Iterates over the list of products provided by the PageController -->
+            <!-- NOTE: The PageController is responsible for limiting 'featuredProducts' to 3 items for the homepage display. -->
+            <div class="product-card" th:each="product : ${featuredProducts}">
+                
+                <!-- Image Wrapper and Image Endpoint -->
+                <div class="image-wrapper pink-bg">
+                    <!-- The image source calls the REST endpoint we defined, passing the imageId -->
+                    <img th:src="@{/image/{id}(id=${product.imageId})}" 
+                         th:alt="${product.name}" 
+                         onerror="this.onerror=null; this.src='/image/home_background.jpg'" 
+                         loading="lazy" />
+                </div>
+                
+                <!-- Product Details -->
+                <p class="product-name" th:text="${product.name}">Placeholder Candle Name</p>
+                <p class="product-desc" th:text="${product.description}">Placeholder scent description</p>
+                <p class="product-price" th:text="'$' + ${#numbers.formatDecimal(product.price, 0, 'COMMA', 2, 'POINT')}">€49.99</p>
+                
+                <!-- Availability indicator using 'quantity' field -->
+                <p th:if="${product.quantity > 0}" class="stock-status in-stock">In Stock</p>
+                <p th:unless="${product.quantity > 0}" class="stock-status out-of-stock">Out of Stock</p>
+            </div>
+
+            <!-- Fallback if no products are found -->
+            <div th:if="${featuredProducts == null or #lists.isEmpty(featuredProducts)}" class="text-center w-full col-span-3 py-10">
+                <p class="text-gray-500">No featured products found. Please add products to the database.</p>
+            </div>
+            
+        </div>
+    </section>
+    
+    <footer>
+        <p>© 2025 MystiWax. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
